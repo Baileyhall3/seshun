@@ -14,7 +14,7 @@ export interface BusinessFormData {
 }
 
 export interface WorkingDay {
-    name: string;
+    day_name: string;
     day_of_week: number;
     enabled: boolean;
     start_time: string;

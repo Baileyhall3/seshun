@@ -1,5 +1,5 @@
 class DateUtils {
-    static toLongDate(date) {
+    static toLongDate(date: Date) {
         const parsedDate = new Date(date);
         if (isNaN(parsedDate)) return 'Invalid Date';
         return parsedDate.toDateString(); // Example: "Mon Dec 30 2024"

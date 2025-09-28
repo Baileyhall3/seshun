@@ -2,10 +2,24 @@ import {
   initializeDataObjectManager,
   createDataObject
 } from 'supabase-dataobject-core';
+import type { DataObjectErrorHandler } from 'supabase-dataobject-core';
 
 interface SupabaseConfig {
     url: string;
     key: string;
+}
+
+const errorHandler: DataObjectErrorHandler = {
+    onError: (error: string) => {
+        console.error('Supabase error:', error)
+        throw new Error(error);
+    },
+    onWarning: (warning: string) => {
+        console.warn('Supabase warning:', warning)
+    },
+    onInfo: (info: string) => {
+        console.info('Supabase info:', info)
+    }
 }
 
 /**
@@ -17,7 +31,8 @@ interface SupabaseConfig {
  */
 export async function initDataObjects(url: string, key: string, currentUserId: string) {
     initializeDataObjectManager({
-        supabaseConfig: { url, anonKey: key }
+        supabaseConfig: { url, anonKey: key },
+        errorHandler
     });
 
     const userData = await createDataObject('user', {

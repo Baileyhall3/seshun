@@ -50,7 +50,12 @@
                   <div v-if="businessWorkingTimesDs?.data.length > 0" class="working-hours">
                     <div v-for="time in businessWorkingTimesDs?.data" :key="time.day_of_week" class="working-day">
                       <span class="day-name">{{ time.day_name }}</span>
-                      <span class="day-hours">{{ DateUtils.toShortTime(time.start_time) }} - {{ DateUtils.toShortTime(time.end_time) }}</span>
+                      <template v-if="time.enabled">
+                        <span class="day-hours">{{ DateUtils.toShortTime(time.start_time) }} - {{ DateUtils.toShortTime(time.end_time) }}</span>
+                      </template>
+                      <div v-else class="closed-indicator">
+                        <span>Closed</span>
+                      </div>
                     </div>
                   </div>
                   <p v-else class="no-hours">No working hours set</p>
@@ -117,7 +122,7 @@
                   Manage Bookings
                 </ion-button>
                 
-                <ion-button expand="block" fill="outline">
+                <ion-button expand="block" fill="outline" @click="appUtils.goTo('business-settings')">
                   <ion-icon :icon="settingsOutline" slot="start"></ion-icon>
                   Business Settings
                 </ion-button>
@@ -171,12 +176,11 @@ import {
 import BusinessSetupCard from '@/components/BusinessSetupCard.vue';
 import { getDataObjectById } from 'supabase-dataobject-core';
 import DateUtils from '@/utils/DateUtils';
+import appUtils from '@/utils/AppUtils';
 
 defineOptions({
   name: 'BusinessDashboard'
 });
-
-const router = useRouter();
 
 const userDs = getDataObjectById('user');
 const businessDs = getDataObjectById('my_business');
@@ -336,5 +340,11 @@ const showAlertMessage = (header: string, message: string) => {
 .action-buttons ion-button {
   height: 48px;
   font-weight: 500;
+}
+
+.closed-indicator {
+  text-align: center;
+  color: #666;
+  font-style: italic;
 }
 </style>

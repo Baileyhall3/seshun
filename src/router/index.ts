@@ -13,6 +13,8 @@ import BusinessSetupComplete from '@/views/BusinessSetupComplete.vue';
 import BusinessDashboard from '@/views/BusinessDashboard.vue';
 import EditProfile from '@/views/EditProfile.vue';
 import ProfileDetails from '@/views/ProfileDetails.vue';
+import BusinessSettings from '@/views/BusinessSettings.vue';
+import BusinessSettingsWorkingHrs from '@/views/BusinessSettingsWorkingHrs.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -93,6 +95,18 @@ const routes: Array<RouteRecordRaw> = [
     path: '/business-dashboard',
     name: 'Business Dashboard',
     component: BusinessDashboard,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/business-settings',
+    name: 'Business Settings',
+    component: BusinessSettings,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/business-settings/working-times',
+    name: 'Business Working Times',
+    component: BusinessSettingsWorkingHrs,
     meta: { requiresAuth: true }
   }
 ]

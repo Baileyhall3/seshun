@@ -2,14 +2,14 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
-        <ion-title>User Profile</ion-title>
+        <ion-title>Business Settings</ion-title>
       </ion-toolbar>
     </ion-header>
 
     <ion-content :fullscreen="true" class="ion-padding">
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">User Profile</ion-title>
+          <ion-title size="large">Business Settings</ion-title>
         </ion-toolbar>
       </ion-header>
 
@@ -17,40 +17,36 @@
         <div v-if="isAuthenticated" class="profile-wrapper">
           <ion-card>
             <ion-card-header>
-              <ion-card-title>{{ userDs?.currentRecord?.display_name ?? (userDs?.currentRecord?.first_name + ' ' + userDs?.currentRecord?.last_name) }}</ion-card-title>
-              <ion-card-subtitle>{{ userDs?.currentRecord?.email }}</ion-card-subtitle>
+              <ion-card-title>{{ businessDs?.currentRecord?.name }}</ion-card-title>
+              <ion-card-subtitle>{{ businessDs?.currentRecord?.category }}</ion-card-subtitle>
             </ion-card-header>
   
             <ion-card-content>
-              <!-- <div>
-                <ion-text>Actions</ion-text>
-                <ion-button expand="block" color="primary" @click="editProfile" style="margin-bottom: 1vh;">
-                  Edit Profile
-                </ion-button>
-                <ion-button expand="block" color="danger" @click="handleLogout">
-                  Sign Out
-                </ion-button>
-              </div> -->
               <ion-list>
                 <ion-item button detail @click="appUtils.goTo('/user-profile/profile-details')">
-                  My Profile
+                  Edit Business
                   <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
                 </ion-item>
         
-                <ion-item button detail @click="appUtils.goTo('/user-profile/edit-profile')">
-                  Edit Profile
+                <ion-item button detail @click="appUtils.goTo('/business-settings/working-times')">
+                  Update Working Hours
                   <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
                 </ion-item>
         
                 <ion-item button detail @click="appUtils.goTo('update-email')">
-                  Update Email
+                  Update Social Links
                   <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
                 </ion-item>
         
                 <ion-item button detail @click="appUtils.goTo('change-password')">
-                  Change Password
+                  Transfer Ownership
                   <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
                 </ion-item>
+
+                <!-- <ion-item button detail @click="appUtils.goTo('change-password')">
+                  Business Card Setup
+                  <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+                </ion-item> -->
               </ion-list>
             </ion-card-content>
           </ion-card>
@@ -60,7 +56,6 @@
           <strong>You are not logged in.</strong>
         </div>
       </div>
-
     </ion-content>
   </ion-page>
 </template>
@@ -80,29 +75,15 @@ import {
   IonItem,
   IonList,
 } from '@ionic/vue'
-import { userStore, logout } from '@/stores/userStore';
-import { computed } from 'vue';
+import { userStore } from '@/stores/userStore';
 import { getDataObjectById } from 'supabase-dataobject-core';
 import appUtils from '@/utils/AppUtils';
 
+// check if user is the business owner
 const { isAuthenticated } = userStore
 
-const userDs = getDataObjectById('user');
+const businessDs = getDataObjectById('my_business');
 
-const userName = computed(() => {
-  return (
-    userDs?.currentRecord?.display_name ??
-    `${userDs?.currentRecord?.first_name} ${userDs?.currentRecord?.last_name ?? ''}`
-  );
-});
-
-const handleLogout = async () => {
-  const { success } = await logout()
-  if (success) {
-    // Optional: navigate to login page after sign out
-    window.location.href = '/login'
-  }
-}
 </script>
 
 <style scoped>
