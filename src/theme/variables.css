@@ -1,0 +1,149 @@
+/* For information on how to create your own theme, please see:
+http://ionicframework.com/docs/theming/ */
+
+.app-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex; 
+  justify-content: center;
+}
+@media (min-width: 640px) {
+    .app-container {
+        max-width: 640px;
+    }
+}
+@media (min-width: 768px) {
+    .app-container {
+        max-width: 768px;
+    }
+}
+@media (min-width: 1024px) {
+    .app-container {
+        max-width: 1024px;
+    }
+}
+@media (min-width: 1280px) {
+    .app-container {
+        max-width: 1280px;
+    }
+}
+@media (min-width: 1536px) {
+    .app-container {
+        max-width: 1536px;
+    }
+}
+
+/* ===== Responsive Flex Utilities ===== */
+
+.flex {
+    display: flex;
+}
+
+/* Flex container: default column, gap spacing */
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* default gap, can override with other spacing classes */
+}
+
+/* Flex container: default row */
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+/* Responsive: stack vertically on small, side-by-side on large screens */
+.flex-col-lg-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .flex-col-lg-row {
+    flex-direction: row;
+  }
+}
+
+/* Flex item grows to fill available space */
+.flex-1 {
+  flex: 1;
+}
+
+/* Justify content */
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+/* Align items */
+.items-center {
+  align-items: center;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.items-end {
+  align-items: flex-end;
+}
+
+/* Flex wrap */
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+/* ===== Spacing Utilities ===== */
+.gap-1 { gap: 0.25rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; }
+.gap-4 { gap: 1rem; }
+.gap-6 { gap: 1.5rem; }
+.gap-8 { gap: 2rem; }
+
+/* ===== Width Utilities ===== */
+.w-full { width: 100%; }
+.w-auto { width: auto; }
+
+/* ===== Padding Utilities ===== */
+.p-1 { padding: 0.25rem; }
+.p-2 { padding: 0.5rem; }
+.p-3 { padding: 0.75rem; }
+.p-4 { padding: 1rem; }
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+
+/* ===== Margin Utilities ===== */
+.m-1 { margin: 0.25rem; }
+.m-2 { margin: 0.5rem; }
+.m-3 { margin: 0.75rem; }
+.m-4 { margin: 1rem; }
+.mx-4 { margin-left: 1rem; margin-right: 1rem; }
+.my-4 { margin-top: 1rem; margin-bottom: 1rem; }
+.ms-1 { margin-left: 0.25rem; }
+.ms-2 { margin-left: 0.5rem; }
+.me-1 { margin-right: 0.25rem; }
+.me-2 { margin-right: 0.5rem; }
+
+/* ===== Text Utilities ===== */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.slightly-muted {
+  font-weight: 500;
+  color: #333;
+}
